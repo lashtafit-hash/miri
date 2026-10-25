@@ -7,17 +7,20 @@
 <meta name="description" content="여기 아무것도 없어. 진짜야.">
 <meta name="theme-color" content="#1a1215">
 
-<!-- ПРЕВЬЮ ДЛЯ ССЫЛОК (Telegram, Instagram, WhatsApp, KakaoTalk)
-     Когда сайт заработает, замени ВАШ-АДРЕС на его адрес, например:
-     https://nothing.твойдомен.com  или  https://твойник.github.io/название-репо -->
+<!-- ПРЕВЬЮ ДЛЯ ССЫЛОК (Telegram, Instagram, WhatsApp, KakaoTalk) -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="여기 아무것도 없어.">
-<meta property="og:description" content="진짜야. ㅋㅋ">
-<meta property="og:image" content="https://ВАШ-АДРЕС/preview.jpg">
-<meta property="og:image:width" content="1600">
-<meta property="og:image:height" content="837">
+<meta property="og:url" content="https://miri.watchmecreative.space/">
+<meta property="og:title" content="Did you miss me?">
+<meta property="og:description" content="…">
+<meta property="og:image" content="https://miri.watchmecreative.space/preview.jpg">
+<meta property="og:image:secure_url" content="https://miri.watchmecreative.space/preview.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://ВАШ-АДРЕС/preview.jpg">
+<meta name="twitter:title" content="Did you miss me?">
+<meta name="twitter:description" content="…">
+<meta name="twitter:image" content="https://miri.watchmecreative.space/preview.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -227,6 +230,15 @@
     }
   }
   scene();
+
+  // Тихое уведомление: сообщает, что кто-то открыл сайт.
+  // Страну и время определяет посредник на своей стороне —
+  // со страницы не собирается и не отправляется ничего личного.
+  // Вставь сюда адрес своего Worker (получишь при деплое на Cloudflare):
+  const NOTIFY_URL = 'https://ТВОЙ-WORKER.workers.dev';
+  if (NOTIFY_URL.indexOf('ТВОЙ-WORKER') === -1) {
+    fetch(NOTIFY_URL, { method: 'POST', keepalive: true }).catch(() => {});
+  }
 
   // тёплые огоньки
   const bokeh = $('bokeh');
